@@ -2,8 +2,8 @@ name: WebHostMost Login 
 
 on:
   schedule:
-    # 每月20号的 UTC 时间 00:00 运行
-    - cron: '0 0 20 * *'
+    # 每隔 15 天在 UTC 时间 00:00 运行（即每月 1 号和 16 号左右）
+    - cron: '0 0 */15 * *'
   workflow_dispatch:  # 允许手动触发
 
 jobs:
@@ -16,7 +16,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: '24'
 
       - name: Install dependencies
         run: npm install puppeteer@latest
